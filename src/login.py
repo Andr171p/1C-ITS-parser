@@ -67,6 +67,9 @@ def login(username: str, password: str) -> webdriver.Chrome:
 
 if __name__ == "__main__":
     from src.settings import settings
+    from src.sections.program_instructions import get_program_instructions
 
     logging.basicConfig(level=logging.INFO)
-    login(settings.its.login, settings.its.password)
+    driver = login(settings.its.login, settings.its.password)
+    results = get_program_instructions(driver)
+
