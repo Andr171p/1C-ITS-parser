@@ -6,8 +6,6 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
-from src.constants import URL
-
 
 logger = logging.getLogger(__name__)
 
@@ -16,7 +14,7 @@ def login(username: str, password: str) -> webdriver.Chrome:
     driver = webdriver.Chrome()
     driver.maximize_window()
     try:
-        driver.get(URL)
+        driver.get(...)
         logger.info("Open main page of its.1c.ru")
         login_button = (
             WebDriverWait(driver, 10)
@@ -66,10 +64,7 @@ def login(username: str, password: str) -> webdriver.Chrome:
 
 
 if __name__ == "__main__":
-    from src.settings import settings
-    from src.sections.program_instructions import get_program_instructions
+    from settings import settings
 
     logging.basicConfig(level=logging.INFO)
     driver = login(settings.its.login, settings.its.password)
-    results = get_program_instructions(driver)
-
