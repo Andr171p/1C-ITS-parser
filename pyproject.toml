@@ -18,5 +18,6 @@ dependencies = [
     "python-dotenv>=1.1.0",
     "scrapy>=2.12.0",
     "selenium>=4.31.0",
+    "sqlalchemy>=2.0.40",
     "unstructured>=0.17.2",
 ]

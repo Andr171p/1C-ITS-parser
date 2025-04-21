@@ -1194,6 +1194,7 @@ dependencies = [
     { name = "python-dotenv" },
     { name = "scrapy" },
     { name = "selenium" },
+    { name = "sqlalchemy" },
     { name = "unstructured" },
 ]
 
@@ -1212,6 +1213,7 @@ requires-dist = [
     { name = "python-dotenv", specifier = ">=1.1.0" },
     { name = "scrapy", specifier = ">=2.12.0" },
     { name = "selenium", specifier = ">=4.31.0" },
+    { name = "sqlalchemy", specifier = ">=2.0.40" },
     { name = "unstructured", specifier = ">=0.17.2" },
 ]
 
