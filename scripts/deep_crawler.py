@@ -14,7 +14,7 @@ from src.settings import BASE_DIR
 async def main() -> None:
     # domain_filter = DomainFilter(allowed_domains=["https://v8.1c.ru/erp/"])
     relevance_filter = ContentRelevanceFilter(
-        query="Какая стоимость внедрения 1с ERP",
+        query="Какие сервисы ИТС можно подключить к 1С ERP",
         threshold=0.7  # Minimum similarity score (0.0 to 1.0)
     )
     filter_chain = FilterChain([URLPatternFilter(patterns=["*erp*"]), relevance_filter])
