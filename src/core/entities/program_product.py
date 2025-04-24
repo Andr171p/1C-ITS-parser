@@ -6,8 +6,3 @@ class ProgramProduct(BaseModel):
     url_pattern: str
     name: str
     description: str
-
-
-class SearchResults(BaseModel):
-    url: str
-    content: str

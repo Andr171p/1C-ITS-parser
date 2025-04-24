@@ -9,7 +9,7 @@ from crawl4ai.deep_crawling.filters import (
     ContentRelevanceFilter
 )
 
-from src.models import SearchResults
+from src.core.entities import SearchResult
 
 
 class DeepWebSearch:
@@ -25,7 +25,7 @@ class DeepWebSearch:
         self._max_depth = max_depth
         self._threshold = threshold
 
-    async def search(self, query: str) -> List[SearchResults]:
+    async def search(self, query: str) -> List[SearchResult]:
         relevance_filter = ContentRelevanceFilter(
             query=query,
             threshold=self._threshold
@@ -42,4 +42,4 @@ class DeepWebSearch:
         )
         async with AsyncWebCrawler() as crawler:
             results = await crawler.arun(url=self._url, config=config)
-        return [SearchResults(url=result.url, content=result.markdown) for result in results]
+        return [SearchResult(url=result.url, content=result.markdown) for result in results]
