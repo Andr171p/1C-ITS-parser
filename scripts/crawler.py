@@ -13,13 +13,9 @@ from src.settings import BASE_DIR
 
 async def main() -> None:
     # domain_filter = DomainFilter(allowed_domains=["https://v8.1c.ru/erp/"])
-    relevance_filter = ContentRelevanceFilter(
-        query="Какие сервисы ИТС можно подключить к 1С ERP",
-        threshold=0.7  # Minimum similarity score (0.0 to 1.0)
-    )
-    filter_chain = FilterChain([URLPatternFilter(patterns=["platforma"]), relevance_filter])
+    filter_chain = FilterChain([URLPatternFilter(patterns=["*platforma*"])])
     config = CrawlerRunConfig(
-        deep_crawl_strategy=BFSDeepCrawlStrategy(max_depth=2, filter_chain=filter_chain),
+        deep_crawl_strategy=BFSDeepCrawlStrategy(max_depth=3, filter_chain=filter_chain),
         scraping_strategy=LXMLWebScrapingStrategy(),
         verbose=True
     )
@@ -29,17 +25,20 @@ async def main() -> None:
 
         print(f"Crawled {len(results)} pages in total")
 
-        file_path = BASE_DIR / "parsed_data" / "answer.json"
-        with open(file_path, "w", encoding="utf-8") as file:
-            pages = []
-            for result in results:
-                page = {
-                    "url": result.url,
-                    "content": result.markdown[3050:]
-                }
-                pages.append(page)
-            data = json.dumps(pages, ensure_ascii=False)
-            file.write(data)
+        file_path = BASE_DIR / "parsed_data" / "platform.json"
+        try:
+            with open(file_path, "w", encoding="utf-8") as file:
+                pages = []
+                for result in results:
+                    page = {
+                        "url": result.url,
+                        "content": result.markdown[3050:]
+                    }
+                    pages.append(page)
+                data = json.dumps(pages, ensure_ascii=False)
+                file.write(data)
+        except Exception as ex:
+            print(ex)
 
 
 if __name__ == "__main__":

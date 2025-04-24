@@ -11,6 +11,10 @@ ENV_PATH = BASE_DIR / ".env"
 load_dotenv(ENV_PATH)
 
 
+class PostgresSettings(BaseSettings):
+    ...
+
+
 class ITSSettings(BaseSettings):
     login: str = os.getenv("ITS_LOGIN")
     password: str = os.getenv("ITS_PASSWORD")
